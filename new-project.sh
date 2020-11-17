@@ -5,9 +5,10 @@
 PROJECT="$1"
 
 cd `realpath "$0" | xargs dirname`
+pwd
 . config.sh
 
-echo $TEMPLATE
+echo "$TEMPLATE"
 
 FULL_PATH="$REPOS/$PROJECT"
 
