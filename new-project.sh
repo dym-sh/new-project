@@ -2,13 +2,11 @@
 
 # fast initiation for new projects
 
+
 PROJECT="$1"
 
 cd `realpath "$0" | xargs dirname`
-pwd
-. config.sh
-
-echo "$TEMPLATE"
+. './config.sh'
 
 FULL_PATH="$REPOS/$PROJECT"
 
