@@ -7,6 +7,8 @@ PROJECT="$1"
 cd `realpath "$0" | xargs dirname`
 . config.sh
 
+echo $TEMPLATE
+
 FULL_PATH="$REPOS/$PROJECT"
 
 mkdir -p "$FULL_PATH"
