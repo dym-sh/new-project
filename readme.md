@@ -22,7 +22,7 @@
 - https://github.com/dym-sh/new-project
 - https://gitlab.com/dym-sh/new-project
 - https://dym.sh/lab/new-project
-- hyper://<TBD> /[?](https://beakerbrowser.com)
+- hyper://a6469baa7ed6f891779d285a087b535cdabe0e7d3a788d8bca4686c3955201e9 /[?](https://beakerbrowser.com)
 
 
 ## license
