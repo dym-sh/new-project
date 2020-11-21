@@ -26,12 +26,14 @@ firefox 'https://gitlab.com/projects/new' &
 
 git remote add production "git@$PRODUCTION:~/$PROJECT.git"
 
+echo "- [$PROJECT](./$PROJECT)" \
+  >> "$REPOS/readme.md"
+
+
 [ ! -e 'license' ] \
-  && cp "$REPOS/license" .
+  && echo "$LICENSE" >> 'license'
 
-[ ! -e 'readme.md' ] \
-	&& touch 'readme.md'
-
+touch 'readme.md'
 echo "$TEMPLATE" >> 'readme.md'
 
 
