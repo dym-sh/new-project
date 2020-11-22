@@ -14,8 +14,8 @@
 7. opens directory in text editor
 
 
-## [install](install.sh)
-```
+## [install](./install.sh)
+``` sh
 PREFIX='~/.local'
 
 git clone --depth 1 \
@@ -30,7 +30,7 @@ ln -s $PREFIX/src/new-project/new-project.sh \
 
 
 ## use
-1. adjust [`config.sh`](config.sh) to your preferences
+1. adjust [`config.sh`](./config.sh) to your preferences
 2. `new-project test-1`
 
 
@@ -47,4 +47,4 @@ ln -s $PREFIX/src/new-project/new-project.sh \
 
 
 ## license
-[mit](license)
+[mit](./license)
