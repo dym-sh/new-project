@@ -29,11 +29,9 @@ git remote add production "git@$PRODUCTION:~/$PROJECT.git"
 echo "- [$PROJECT](./$PROJECT)" \
   >> "$REPOS/readme.md"
 
-
 [ ! -e 'license' ] \
   && echo "$LICENSE" >> 'license'
 
-touch 'readme.md'
 echo "$TEMPLATE" >> 'readme.md'
 
 
