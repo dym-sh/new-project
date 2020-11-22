@@ -19,7 +19,7 @@
 PREFIX='~/.local'
 
 git clone --depth 1 \
-  https://github.com/dym-sh/new-project.git \
+  https://dym.sh/new-project/ \
   $PREFIX/src/new-project
 
 chmod +x $PREFIX/src/new-project/new-project.sh
