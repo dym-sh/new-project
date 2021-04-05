@@ -1,35 +1,70 @@
 USER='dym-sh'
+USER_='dym_sh'
+
+FULLNAME='Dym Sohin <re@dym.sh>'
 
 PRODUCTION='dym.sh'
 
-REPOS='/Data/Lab'
+REPOS='/Site'
+
+HYPERCORE_SERVER='hyp@dym.sh -p 567'
 
 
-TEMPLATE="# $PROJECT
+README_WEB="# $PROJECT
 
 > <DESCRIPTION>
 
 
-<a href='./preview.png'><img height=100 border=2 align='right' alt='preview' src='preview.png'></a>
+<a href='./preview.png'><img height=100 border=2 align='right' alt='preview' src='./preview.png'></a>
 ## preview
 - [preview.html](./preview.html)
-- https://codepen.io/$USER/pen/<TBD>/left/?editors=0100
+- https://codepen.io/$USER/pen/___/left/?editors=0100
 
 
 ## mirrors
 - https://github.com/$USER/$PROJECT
 - https://gitlab.com/$USER/$PROJECT
 - https://$PRODUCTION/$PROJECT
-- hyper://<TBD> /[?](https://beakerbrowser.com)
+- hyper://`cat '.hyper'` /[?](https://beakerbrowser.com)
 
 
 ## license
 [mit](./license)"
 
 
+README_PIC="# $PROJECT
+
+> <DESCRIPTION>
+
+![](01.png)
+
+
+## image description
+
+<IMAGE_DESCRIPTION>
+
+
+## references
+- https://___
+
+
+## tags
+- #___
+- #___
+
+
+## cross-posts
+- https://reddit.com/r/$USER_/___
+- https://twitter.com/$USER_/status/___
+- https://instagram.com/p/___
+- https://$PRODUCTION/$PROJECT
+- hyper://`cat '.hyper'` /[?](https://beakerbrowser.com)
+"
+
+
 LICENSE="MIT License
 
-Copyright (c) 2020 $USER <https://$PRODUCTION>
+Copyright (c) 2021 $FULLNAME
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the \"Software\"), to deal
