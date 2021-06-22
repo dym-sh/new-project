@@ -1,9 +1,47 @@
 #!/bin/bash
 
+fn_open()
+{
+  for APP in xdg-open gnome-open cygstart start open; do
+    if command -v "$APP" > /dev/null 2>&1; then
+      "$APP" "$1"
+      break
+    fi
+  done
+}
+
+fn_show_help()
+{
+  echo '# new
+> fast initiation for new projects
+
+## use
+  new <A name for a Project> [OPTION]
+  (please check the config beforehand)
+
+## poissible flags (only one will be used)
+  -h|--help			shows this
+
+  -c|--code			populate with a code template (default option)
+  -g|--graphics		populate with a graphics template
+  -n|--note			populate with a note template
+'
+}
+
+
+if [ -z "$1" ]; then
+  fn_show_help()
+  exit 0
+fi
+
 # pick project type for templates
-PROJECT_TYPE=''
+PROJECT_TYPE='code'
 while (( "$#" )); do
   case "$1" in
+    -h|--help)
+      fn_show_help()
+      exit 1
+      ;;
     -c|--code)
       PROJECT_TYPE='code'
       shift
@@ -73,12 +111,12 @@ echo "$META_TOML" >> 'meta.toml'
 git init
 
 git remote add github "git@github.com:$USER/$SLUG.git"
-firefox 'https://github.com/new' &
-# #TODO: if exist – firefox "https://github.com/$USER/$SLUG/settings"
+fn_open 'https://github.com/new'
+# #TODO: if exist – xdg-open "https://github.com/$USER/$SLUG/settings"
 
 git remote add gitlab "git@gitlab.com:$USER/$SLUG.git"
-firefox 'https://gitlab.com/projects/new' &
-# #TODO: if exist – firefox "https://gitlab.com/$USER/$SLUG/edit"
+fn_open 'https://gitlab.com/projects/new'
+# #TODO: if exist – xdg-open "https://gitlab.com/$USER/$SLUG/edit"
 
 git remote add production "$DEPLOY_GIT:$SLUG.git"
 

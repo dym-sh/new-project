@@ -1,6 +1,6 @@
 # new
 
-> fast initiation for new projects
+>
 
 
 ## flow
@@ -17,6 +17,7 @@
 1. adjust `PREFIX` at wish
 1. make sure the final directory is on `$PATH`
 1. tinker with [`config.sh`](./config.sh) until it works
+1. see the info: `new --help`
 1. test: `new test 1+2=3 --code`
 
 

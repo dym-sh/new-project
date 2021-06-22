@@ -13,7 +13,7 @@ README="# $PROJECT
 
 META_TOML="title = '$PROJECT'"
 
-[[ ! "$PROJECT" == "$SLUG" ]] \
+[[ "$PROJECT" != "$SLUG" ]] \
   && META_TOML="$META_TOML
 slug = '$SLUG'"
 
