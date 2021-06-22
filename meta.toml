@@ -1,0 +1,15 @@
+title = 'new'
+description = 'fast initiation for new projects'
+type = 'code'
+tags = [ 'bash-script', 'project-management' ]
+license = 'MIT'
+homepage = 'https://dym.sh/new'
+source = 'https://source.garden/new'
+
+[mirrors]
+github = 'https://github.com/dym-sh/new'
+gitlab = 'https://gitlab.com/dym-sh/new-project'
+
+[log]
+created = 2021-06-20
+

@@ -2,28 +2,32 @@
 
 # fast initiation for new projects
 
-# -c=code -g=graphics
-PROJECT_TYPE='code'
-
 echo "
 @: '$@'
 #: '$#'
 "
 
+# pick project type for templates
+PROJECT_TYPE=''
 while (( "$#" )); do
   case "$1" in
-    -c)
+    -c|--code)
       PROJECT_TYPE='code'
       echo "PROJECT_TYPE: '$PROJECT_TYPE' (code)"
       shift
       ;;
-    -g)
+    -g|--graphics)
       PROJECT_TYPE='graphics'
       echo "PROJECT_TYPE: '$PROJECT_TYPE' (graphics)"
       shift
       ;;
+    -n|--note)
+      PROJECT_TYPE='note'
+      echo "PROJECT_TYPE: '$PROJECT_TYPE' (note)"
+      shift
+      ;;
     -*|--*=) # unsupported flags
-      echo "Error: Unsupported flag $1"
+      echo "Error: Unsupported flag '$1'"
       ;;
     *) # preserve positional arguments
       echo 'PARAMS="$PARAMS $1"'
@@ -33,11 +37,16 @@ while (( "$#" )); do
   esac
 done
 
-echo "$PROJECT_TYPE"
+# full name of the project
+PROJECT="$@"
+echo "PROJECT: '$PROJECT'"
+echo "PROJECT_TYPE: '$PROJECT_TYPE'"
 
-# name of the project
-PROJECT="$1"
-
+# make slug
+SLUG=`echo "$PROJECT" \
+  | sed -e 's/\s\+/-/g'
+  `
+echo "SLUG: '$SLUG'"
 
 
 # make sure we cd into real dir and not that of a symlink, just to include config file
@@ -45,48 +54,42 @@ cd `realpath "$0" | xargs dirname`
 . './config.sh'
 
 # create project directory
-FULL_PATH="$REPOS/$PROJECT"
+FULL_PATH="$PROJECTS_DIR/$SLUG"
 mkdir -p "$FULL_PATH"
 
 # include templates
-. './templates.sh'
-
+. "./templates/$PROJECT_TYPE.sh"
 
 cd "$FULL_PATH/"
 
 # add template to the readme
-# and create license file if none present
-if [[ 'graphics' == "$PROJECT_TYPE" ]]; then
-  echo "$README_GRAPHICS" >> 'readme.md'
-  [ ! -e 'license' ] \
-    && echo "$LICENSE_GRAPHICS" > 'license'
+echo "$README" >> 'readme.md'
 
-elif [[ 'code' == "$PROJECT_TYPE" ]]; then
-  echo "$README_CODE" >> 'readme.md'
-  [ ! -e 'license' ] \
-    && echo "$LICENSE_CODE" > 'license'
+# create license file if none present
+[ ! -e 'license' ] \
+  && echo "$LICENSE" > 'license'
 
-else
-  echo "$README_..." >> 'readme.md'
-fi
+# populate meta.toml
+echo "$META_TOML" >> 'meta.toml'
 
 
 # add git mirrors and create repos for them
 git init
 
-git remote add github "git@github.com:$USER/$PROJECT.git"
+git remote add github "git@github.com:$USER/$SLUG.git"
 firefox 'https://github.com/new' &
-# if exist – firefox "https://github.com/$USER/$PROJECT/settings"
+# #TODO: if exist – firefox "https://github.com/$USER/$SLUG/settings"
 
-git remote add gitlab "git@gitlab.com:$USER/$PROJECT.git"
+git remote add gitlab "git@gitlab.com:$USER/$SLUG.git"
 firefox 'https://gitlab.com/projects/new' &
-# if exist – firefox "https://gitlab.com/$USER/$PROJECT/edit"
+# #TODO: if exist – firefox "https://gitlab.com/$USER/$SLUG/edit"
 
-git remote add production "$DEPLOY:~/$PROJECT.git"
+git remote add production "$DEPLOY_GIT:$SLUG.git"
 
 
 # initial commit
 git add 'readme.md'
+git add 'meta.toml'
 git add 'license'
 git commit -am 'init'
 

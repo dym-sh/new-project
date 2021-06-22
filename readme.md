@@ -1,48 +1,29 @@
-# new-project
+# new
 
 > fast initiation for new projects
 
 
 ## flow
-
 1. appends header, preview, mirrors, and license to the readme
-2. creates license if none present
-3. creates initial commit out of readme and license
-4. adds git-origins
-5. opens github and gitlab websites to create repos
-6. opens directory in text editor
+1. creates license if none present
+1. creates initial commit out of readme and license
+1. adds git-origins
+1. opens github and gitlab websites to create repos
+1. opens directory in text editor
 
 
-## [install](./install.sh)
-``` sh
-PREFIX='~/.local'
-
-git clone --depth 1 \
-  https://dym.sh/new-project/ \
-  $PREFIX/src/new-project
-
-chmod +x $PREFIX/src/new-project/new-project.sh
-
-ln -s $PREFIX/src/new-project/new-project.sh \
-      $PREFIX/bin/new-project
-```
-
-
-## use
-1. adjust [`config.sh`](./config.sh) to your preferences
-2. `new-project test-1`
+## install and use
+1. look at [install](./install.sh) file for instructions
+1. adjust `PREFIX` at wish
+1. make sure the final directory is on `$PATH`
+1. tinker with [`config.sh`](./config.sh) until it works
+1. test: `new test-001 --code`
 
 
 ## todo
-- automatically create beaker/hyper drive and add it to mirror-urls
-- check if mirrors already have that name and open settings instead of repo-creation
+- `--code`: check if mirrors already have same project name and open settings instead of repo-creation
+- `--comic`: 4 frames, with visual descriptions for each
+- `--article`: long multipart note?
+- `--TBD`: whatever else comes along
+- optional `--slug=string-with-dashes`
 
-
-## mirrors
-- https://github.com/dym-sh/new-project
-- https://gitlab.com/dym-sh/new-project
-- https://dym.sh/new-project
-
-
-## license
-[mit](./license)
