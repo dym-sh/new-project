@@ -13,11 +13,11 @@
 
 
 ## install and use
-1. look at [install](./install.sh) file for instructions
+1. look at [`install.sh`](./install.sh) file for instructions
 1. adjust `PREFIX` at wish
 1. make sure the final directory is on `$PATH`
 1. tinker with [`config.sh`](./config.sh) until it works
-1. test: `new test-001 --code`
+1. test: `new test 1+2=3 --code`
 
 
 ## todo
@@ -25,5 +25,5 @@
 - `--comic`: 4 frames, with visual descriptions for each
 - `--article`: long multipart note?
 - `--TBD`: whatever else comes along
-- optional `--slug=string-with-dashes`
-
+- optionally predefine `--slug=string-with-dashes-different-from-project-name-with-replaced-non-words`
+- check if project with same slug already exist, and ask for actions

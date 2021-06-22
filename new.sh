@@ -25,16 +25,18 @@ while (( "$#" )); do
       ;;
   esac
 done
+echo "PROJECT_TYPE: '$PROJECT_TYPE'"
 
 # full name of the project
-PROJECT=`echo "$PARAMS" | xargs`
+PROJECT=`echo "$PARAMS" | xargs` # trim()
 echo "PROJECT: '$PROJECT'"
-echo "PROJECT_TYPE: '$PROJECT_TYPE'"
 
 # make slug
 SLUG=`echo "$PROJECT" \
-  | sed -e 's/\s\+/-/g' \
-  | tr '[:upper:]' '[:lower:]'
+  | sed -e 's/[\W_]\+/-/g' \
+  | sed -e 's/^\-\+//g' \
+  | sed -e 's/\-\+$//g' \
+  | tr '[:upper:]' '[:lower:]' \
   `
 echo "SLUG: '$SLUG'"
 
@@ -81,7 +83,7 @@ firefox 'https://gitlab.com/projects/new' &
 git remote add production "$DEPLOY_GIT:$SLUG.git"
 
 
-# initial commit
+# add created files
 git add 'readme.md'
 git add 'meta.toml'
 git add 'license'
