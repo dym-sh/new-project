@@ -11,6 +11,3 @@ DEPLOY_WEB='https://source.garden'
 DEPLOY_GIT='git@source.garden'
 
 PROJECTS_DIR='/Projects'
-
-YEAR=`date '+%Y'`
-TODAY=`date '+%Y-%M-%d'`

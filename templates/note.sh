@@ -9,8 +9,13 @@ README="# $PROJECT
 - ___
 "
 
-META_TOML="title = '$PROJECT'
-slug = '$SLUG'
+META_TOML="title = '$PROJECT'"
+
+[[ ! "$PROJECT" == "$SLUG" ]] \
+  && META_TOML="$META_TOML
+slug = '$SLUG'"
+
+META_TOML="$META_TOML
 description = '<DESCRIPTION>'
 type = 'note'
 tags = [ 'tag-1', 'tag-2' ]

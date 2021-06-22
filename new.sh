@@ -1,11 +1,4 @@
-#!/usr/bin/zsh
-
-# fast initiation for new projects
-
-echo "
-@: '$@'
-#: '$#'
-"
+#!/bin/bash
 
 # pick project type for templates
 PROJECT_TYPE=''
@@ -13,24 +6,20 @@ while (( "$#" )); do
   case "$1" in
     -c|--code)
       PROJECT_TYPE='code'
-      echo "PROJECT_TYPE: '$PROJECT_TYPE' (code)"
       shift
       ;;
     -g|--graphics)
       PROJECT_TYPE='graphics'
-      echo "PROJECT_TYPE: '$PROJECT_TYPE' (graphics)"
       shift
       ;;
     -n|--note)
       PROJECT_TYPE='note'
-      echo "PROJECT_TYPE: '$PROJECT_TYPE' (note)"
       shift
       ;;
     -*|--*=) # unsupported flags
       echo "Error: Unsupported flag '$1'"
       ;;
     *) # preserve positional arguments
-      echo 'PARAMS="$PARAMS $1"'
       PARAMS="$PARAMS $1"
       shift
       ;;
@@ -38,13 +27,14 @@ while (( "$#" )); do
 done
 
 # full name of the project
-PROJECT="$@"
+PROJECT=`echo "$PARAMS" | xargs`
 echo "PROJECT: '$PROJECT'"
 echo "PROJECT_TYPE: '$PROJECT_TYPE'"
 
 # make slug
 SLUG=`echo "$PROJECT" \
-  | sed -e 's/\s\+/-/g'
+  | sed -e 's/\s\+/-/g' \
+  | tr '[:upper:]' '[:lower:]'
   `
 echo "SLUG: '$SLUG'"
 
@@ -56,6 +46,10 @@ cd `realpath "$0" | xargs dirname`
 # create project directory
 FULL_PATH="$PROJECTS_DIR/$SLUG"
 mkdir -p "$FULL_PATH"
+
+# some general dates to be used in templates
+YEAR=`date '+%Y'`
+TODAY=`date '+%Y-%m-%d'`
 
 # include templates
 . "./templates/$PROJECT_TYPE.sh"
@@ -91,8 +85,7 @@ git remote add production "$DEPLOY_GIT:$SLUG.git"
 git add 'readme.md'
 git add 'meta.toml'
 git add 'license'
-git commit -am 'init'
 
 
 # start coding
-sublime_text "$FULL_PATH/"
+$EDITOR "$FULL_PATH/"
