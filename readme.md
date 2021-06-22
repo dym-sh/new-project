@@ -1,15 +1,15 @@
 # new
 
->
+> fast initiation for new projects
 
 
-## flow
-1. appends header, preview, mirrors, and license to the readme
+## flow of creation
+1. appends header, preview, and cross-post links to the readme
 1. creates license if none present
-1. creates initial commit out of readme and license
-1. adds git-origins
-1. opens github and gitlab websites to create repos
-1. opens directory in text editor
+1. adds homepage, mirrors, license, etc.. to the [`meta.toml`](https://github.com/dym-sh/meta-toml)
+1. adds git-origins for code mirroring
+1. opens github and gitlab websites to create new repos
+1. opens created files in text `$EDITOR` (if it supports opening directories)
 
 
 ## install and use
@@ -19,6 +19,7 @@
 1. tinker with [`config.sh`](./config.sh) until it works
 1. see the info: `new --help`
 1. test: `new test 1+2=3 --code`
+1. make sure the permissive licenses used in templates are something you'd be content with releasing your content under, otherwise change them accordingly
 
 
 ## todo
@@ -28,3 +29,4 @@
 - `--TBD`: whatever else comes along
 - optionally predefine `--slug=string-with-dashes-different-from-project-name-with-replaced-non-words`
 - check if project with same slug already exist, and ask for actions
+- `-l pd | --license=PublicDomain`: define custom licenses
