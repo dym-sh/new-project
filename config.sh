@@ -10,4 +10,4 @@ BASE_URL='https://dym.sh'
 DEPLOY_WEB='https://source.garden'
 DEPLOY_GIT='git@source.garden'
 
-PROJECTS_DIR='/Projects'
+PROJECTS_DIR='/Data/Projects'

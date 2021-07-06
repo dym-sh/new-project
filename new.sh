@@ -26,12 +26,12 @@ fn_show_help()
   -g|--graphics		populate with a graphics template
   -n|--note			populate with a note template
 '
+  exit 1
 }
 
 
 if [ -z "$1" ]; then
-  fn_show_help()
-  exit 0
+  fn_show_help
 fi
 
 # pick project type for templates
@@ -39,8 +39,7 @@ PROJECT_TYPE='code'
 while (( "$#" )); do
   case "$1" in
     -h|--help)
-      fn_show_help()
-      exit 1
+      fn_show_help
       ;;
     -c|--code)
       PROJECT_TYPE='code'
